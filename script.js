@@ -43,6 +43,7 @@ function generatePanels () {
   for (var i = 1; i <= difficulty; i++) {
     var panel = document.createElement("div");
     panel.setAttribute("id", "pan-"+i);
+    panel.classList.add("panel");
     //addEventlisteners to panels
     panel.addEventListener("click", lightUpPanel)
     tempHolder.appendChild(panel);
@@ -53,7 +54,7 @@ function generatePanels () {
 function resetGame() {
   startButton.style.visibility = "";
   lvlCount = 1;
-  levelDisplay.innerHTML = "Level : " + lvlCount;
+  levelDisplay.innerHTML = "-";
   player = [];
   sequence = [];
   sequenceCount = 0;
@@ -141,7 +142,7 @@ function match() {
     correct = false;
     sound = false;
     matchOutcomes();
-  } else if (player.length === 2 && correct === true) { //check for win condition
+  } else if (player.length === 20 && correct === true) { //check for win condition
     console.log("winner winner winner");
     winGame();
   } else {
@@ -164,7 +165,7 @@ function matchOutcomes() {
     player = [];
     correct = true;
     lvlCount ++;
-    levelDisplay.innerHTML = "Level: " + lvlCount;
+    levelDisplay.innerHTML = "Level : " + lvlCount;
     sequenceCount = 0;
     lightInterval = setInterval(gameHandler, 1000);
     console.log(sequenceCount);

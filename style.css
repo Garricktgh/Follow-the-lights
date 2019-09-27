@@ -1,3 +1,12 @@
+body {
+  background-image: url("https://bcc53877d7aa0a135b9a-1452ca75bf8985207bb5b0c44a65ef28.ssl.cf4.rackcdn.com/Product-800x800/8db5b973-cf4d-487c-9d68-d676cdb1fd05.jpg");
+}
+
+h1 {
+  color: rgb(46, 51, 56);
+  margin: 50px 0;
+}
+
 .container {
   text-align: center;
 }
@@ -6,54 +15,64 @@
   text-align: center;
 }
 
+.panel {
+  border-top: 5px solid black;
+  border-bottom: 5px solid black;
+  border-radius: 5px;
+  margin: 50px 10px;
+}
+
 #pan-1 {
-  border: 1px solid black;
+  border: 5px solid black;
   color: transparent;
   width: 200px;
   height: 200px;
   display: inline-block;
   background: darkgreen;
-  margin: 50px 0;
+  /* margin: 50px auto; */
 }
 
 #pan-2 {
-  border: 1px solid black;
+  border: 5px solid black;
   color: transparent;
   width: 200px;
   height: 200px;
   display: inline-block;
   background: darkred;
-  margin: 50px 0;
+  /* margin: 50px auto; */
 }
 
 #pan-3 {
-  border: 1px solid black;
+  border: 5px solid black;
   color: transparent;
   width: 200px;
   height: 200px;
   display: inline-block;
   background: goldenrod;
-  margin: 50px 0;
+  /* margin: 50px auto; */
 }
 
 #pan-4 {
-  border: 1px solid black;
+  border: 5px solid black;
   color: transparent;
   width: 200px;
   height: 200px;
   display: inline-block;
   background: darkblue;
-  margin: 50px 0;
+  /* margin: 50px auto; */
 }
 
-.level, .button{
+.level, .button {
   text-align: center;
-  border: 1px solid rgb(46, 51, 56);
   font-size: 20px;
   width: 100px;
   height: 50px;
-  line-height: 50px;
+  line-height: 48px;
   background: rgb(46, 51, 56);
   color: white;
   border-radius: 5px;
+}
+
+.button:hover {
+  border: 2px solid white;
 }

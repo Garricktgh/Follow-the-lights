@@ -15,14 +15,18 @@ var lightInterval;
 var sound = true;
 //check to see if it is AI turn
 var aI = true;
+//check if player input is correct
 var correct = true;
+//track win condition
 var win = false;
+//enable player input
 var clickEnabled = false;
 
 var startButton = document.getElementById("start");
 var resetButton = document.getElementById("reset");
 
 startButton.addEventListener("click", startGame);
+resetButton.addEventListener("click", resetGame);
 
 function startGame() {
   startButton.style.visibility = "hidden";
@@ -31,6 +35,36 @@ function startGame() {
   lightInterval = setInterval(gameHandler, 1000);
 }
 
+//generate panels
+function generatePanels () {
+  var tempHolder = document.createElement("div");
+  tempHolder.setAttribute("id", "tempHolder");
+  for (var i = 1; i <= difficulty; i++) {
+    var panel = document.createElement("div");
+    panel.setAttribute("id", "pan-"+i);
+    //addEventlisteners to panels
+    panel.addEventListener("click", lightUpPanel)
+    tempHolder.appendChild(panel);
+  }
+  document.getElementById("panels").appendChild(tempHolder);
+}
+
+function resetGame() {
+  startButton.style.visibility = "";
+  lvlCount = 1;
+  player = [];
+  sequence = [];
+  sequenceCount = 0;
+  sound = true;
+  aI = true;
+  correct = true;
+  win = false;
+  clickEnabled = false;
+  clearInterval(lightInterval);
+  document.getElementById("panels").removeChild(document.getElementById("tempHolder"));
+}
+
+//handles starting and ending of automatic sequence
 function gameHandler() {
   console.log("seqCount" + sequenceCount);
   console.log("lvl"+ lvlCount);
@@ -62,21 +96,10 @@ function runSequence() {
   sequenceCount++;
 }
 
-//generate panels
-function generatePanels () {
-  for (var i = 1; i <= difficulty; i++) {
-    var panel = document.createElement("div");
-    panel.setAttribute("id", "pan-"+i);
-    //addEventlisteners to panels
-    panel.addEventListener("click", lightUpPanel)
-    document.getElementById("panels").appendChild(panel);
-  }
-}
-
 //generate light sequence
 function fillLightSequence() {
   for (var i = 1; i<= 20; i++) {
-    //use math.random to generate sequences
+    //use math.random to generate sequence
     var lightSequence = Math.floor((Math.random() * difficulty) +1);
     sequence.push(lightSequence);
   }
@@ -122,9 +145,10 @@ function match() {
     player = [];
     correct = true;
     setTimeout (reactivateAuto, 800);
-  } else if (player.length < lvlCount) {
+    
+  } else if (player.length < lvlCount) {  //if input is correct but haven't complete entering the sequence
     delayClickEnabled();
-  } if (lvlCount === player.length && correct === true) {
+  } else if (lvlCount === player.length && correct === true) { //if player input sequence is correct and matches sequence
     console.log("moving on");
     aI = true;
     player = [];
@@ -142,10 +166,10 @@ function match() {
   // }
 }
 
+//re-run previous sequence
 function reactivateAuto() {
   lightsAll();
   delayLightsOff();
-  //re-run previous sequence
   sequenceCount = 0;
   aI = true;
   sound = true;
@@ -159,7 +183,7 @@ function delayLightsOff() {
 
 //limits spam clicks
 function delayClickEnabled() {
-  setTimeout(enableClick, 800);
+  setTimeout(enableClick, 600);
 }
 
 //enable user input
@@ -167,6 +191,7 @@ function enableClick() {
   clickEnabled = true;
 }
 
+//turn on all lights
 function lightsAll() {
   document.getElementById("pan-1").style.background = "lightgreen";
   document.getElementById("pan-2").style.background = "tomato";
@@ -182,6 +207,7 @@ function lightsOff() {
   document.getElementById("pan-4").style.background = "darkblue";
 }
 
+//lights up panel one
 function one() {
   document.getElementById("pan-1").style.background = "lightgreen"; 
     if(sound) {

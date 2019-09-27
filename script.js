@@ -68,16 +68,14 @@ function resetGame() {
 
 //handles starting and ending of automatic sequence
 function gameHandler() {
-  console.log("seqCount" + sequenceCount);
-  console.log("lvl"+ lvlCount);
+  levelDisplay.innerHTML = "Level : " + lvlCount;
   if (sequenceCount === lvlCount) {
     clearInterval(lightInterval);
     aI = false;
     delayClickEnabled();
   }
-  
+  console.log("gameHand");
   if(aI === true) {
-    console.log("gameHand");
     sequenceInterval = setTimeout(runSequence, 800);
   } 
 }
@@ -143,7 +141,6 @@ function match() {
     sound = false;
     matchOutcomes();
   } else if (player.length === 20 && correct === true) { //check for win condition
-    console.log("winner winner winner");
     winGame();
   } else {
     matchOutcomes();
@@ -160,7 +157,6 @@ function matchOutcomes() {
   } else if (player.length < lvlCount) {  //if input is correct but haven't complete entering the sequence
     delayClickEnabled();
   } else if (lvlCount === player.length && correct === true) { //if player input sequence is correct and matches sequence
-    console.log("moving on");
     aI = true;
     player = [];
     correct = true;
@@ -170,13 +166,13 @@ function matchOutcomes() {
     lightInterval = setInterval(gameHandler, 1000);
     console.log(sequenceCount);
     console.log(lvlCount);
-    console.log(sequence);
   }
 }
 
 //re-run previous sequence
 function reactivateAuto() {
   lightsAll();
+  levelDisplay.innerHTML = "Wrong!";
   delayLightsOff();
   sequenceCount = 0;
   aI = true;
@@ -262,7 +258,6 @@ function winGame() {
   console.log("clear all intervals");
   clearInterval(sequenceInterval);
   clickEnabled = false;
-  console.log(clickEnabled);
   aI = false;
   lightsAll();
 }

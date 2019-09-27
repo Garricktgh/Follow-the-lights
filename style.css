@@ -13,6 +13,7 @@
   height: 200px;
   display: inline-block;
   background: darkgreen;
+  margin: 50px 0;
 }
 
 #pan-2 {
@@ -22,7 +23,7 @@
   height: 200px;
   display: inline-block;
   background: darkred;
-  
+  margin: 50px 0;
 }
 
 #pan-3 {
@@ -32,6 +33,7 @@
   height: 200px;
   display: inline-block;
   background: goldenrod;
+  margin: 50px 0;
 }
 
 #pan-4 {
@@ -41,4 +43,17 @@
   height: 200px;
   display: inline-block;
   background: darkblue;
+  margin: 50px 0;
+}
+
+.level, .button{
+  text-align: center;
+  border: 1px solid rgb(46, 51, 56);
+  font-size: 20px;
+  width: 100px;
+  height: 50px;
+  line-height: 50px;
+  background: rgb(46, 51, 56);
+  color: white;
+  border-radius: 5px;
 }

@@ -12,7 +12,6 @@ var sequenceCount = 0;
 //lightInterval for setInterval
 var lightInterval;
 var sequenceInterval;
-var gameHandInterval;
 //sound 
 var sound = true;
 //check to see if it is AI turn
@@ -24,12 +23,14 @@ var clickEnabled = false;
 
 var startButton = document.getElementById("start");
 var resetButton = document.getElementById("reset");
+var levelDisplay = document.querySelector(".level");
 
 startButton.addEventListener("click", startGame);
 resetButton.addEventListener("click", resetGame);
 
 function startGame() {
   startButton.style.visibility = "hidden";
+  levelDisplay.innerHTML = "Level : " + lvlCount;
   generatePanels();
   fillLightSequence();
   lightInterval = setInterval(gameHandler, 1000);
@@ -52,6 +53,7 @@ function generatePanels () {
 function resetGame() {
   startButton.style.visibility = "";
   lvlCount = 1;
+  levelDisplay.innerHTML = "Level : " + lvlCount;
   player = [];
   sequence = [];
   sequenceCount = 0;
@@ -139,7 +141,7 @@ function match() {
     correct = false;
     sound = false;
     matchOutcomes();
-  } else if (player.length === 20 && correct === true) { //check for win condition
+  } else if (player.length === 2 && correct === true) { //check for win condition
     console.log("winner winner winner");
     winGame();
   } else {
@@ -162,6 +164,7 @@ function matchOutcomes() {
     player = [];
     correct = true;
     lvlCount ++;
+    levelDisplay.innerHTML = "Level: " + lvlCount;
     sequenceCount = 0;
     lightInterval = setInterval(gameHandler, 1000);
     console.log(sequenceCount);
@@ -253,7 +256,7 @@ function four() {
 }
 
 function winGame() {
-  console.log("win!!!!");
+  levelDisplay.innerHTML = "Win!";
   clearInterval(lightInterval);
   console.log("clear all intervals");
   clearInterval(sequenceInterval);

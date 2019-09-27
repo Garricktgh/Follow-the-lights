@@ -11,14 +11,14 @@ var difficulty = 4;
 var sequenceCount = 0;
 //lightInterval for setInterval
 var lightInterval;
+var sequenceInterval;
+var gameHandInterval;
 //sound 
 var sound = true;
 //check to see if it is AI turn
 var aI = true;
 //check if player input is correct
 var correct = true;
-//track win condition
-var win = false;
 //enable player input
 var clickEnabled = false;
 
@@ -58,7 +58,6 @@ function resetGame() {
   sound = true;
   aI = true;
   correct = true;
-  win = false;
   clickEnabled = false;
   clearInterval(lightInterval);
   document.getElementById("panels").removeChild(document.getElementById("tempHolder"));
@@ -76,7 +75,7 @@ function gameHandler() {
   
   if(aI === true) {
     console.log("gameHand");
-    setTimeout(runSequence, 800);
+    sequenceInterval = setTimeout(runSequence, 800);
   } 
 }
 
@@ -139,13 +138,22 @@ function match() {
   if (player[player.length-1] !== sequence[player.length-1]) {
     correct = false;
     sound = false;
+    matchOutcomes();
+  } else if (player.length === 20 && correct === true) { //check for win condition
+    console.log("winner winner winner");
+    winGame();
+  } else {
+    matchOutcomes();
   }
+}
+
+//actions taken after matching
+function matchOutcomes() {
   //if input is wrong
   if (correct === false) {
     player = [];
     correct = true;
     setTimeout (reactivateAuto, 800);
-    
   } else if (player.length < lvlCount) {  //if input is correct but haven't complete entering the sequence
     delayClickEnabled();
   } else if (lvlCount === player.length && correct === true) { //if player input sequence is correct and matches sequence
@@ -160,10 +168,6 @@ function match() {
     console.log(lvlCount);
     console.log(sequence);
   }
-
-  // if (win === 3 && correct) {
-  //   winGame();
-  // }
 }
 
 //re-run previous sequence
@@ -248,5 +252,14 @@ function four() {
   console.log(player);
 }
 
-
+function winGame() {
+  console.log("win!!!!");
+  clearInterval(lightInterval);
+  console.log("clear all intervals");
+  clearInterval(sequenceInterval);
+  clickEnabled = false;
+  console.log(clickEnabled);
+  aI = false;
+  lightsAll();
+}
 

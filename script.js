@@ -6,7 +6,7 @@ var player = [];
 var sequence = [];
 //difficulty = 4
 //normal, advance 6 panels, impossible 8 panels
-var difficulty = 4;
+var difficulty = 8;
 //sequenceCount
 var sequenceCount = 0;
 //lightInterval for setInterval
@@ -92,6 +92,14 @@ function runSequence() {
     three();
   } else if (sequence[sequenceCount] === 4) {
     four();
+  } else if (sequence[sequenceCount] === 5) {
+    five();
+  } else if (sequence[sequenceCount] === 6) {
+    six();
+  } else if (sequence[sequenceCount] === 7) {
+    seven();
+  } else if (sequence[sequenceCount] === 8) {
+    eight();
   }
   sequenceCount++;
 }
@@ -130,6 +138,26 @@ function lightUpPanel(event) {
       player.push(4);
       match();
       four();
+    } else if(panelClicked.id === "pan-5") { 
+      clickEnabled = false;
+      player.push(5);
+      match();
+      five();
+    } else if(panelClicked.id === "pan-6") { 
+      clickEnabled = false;
+      player.push(6);
+      match();
+      six();
+    } else if(panelClicked.id === "pan-7") { 
+      clickEnabled = false;
+      player.push(7);
+      match();
+      seven();
+    } else if(panelClicked.id === "pan-8") { 
+      clickEnabled = false;
+      player.push(8);
+      match();
+      eight();
     }
   }
 }
@@ -201,6 +229,14 @@ function lightsAll() {
   document.getElementById("pan-2").style.background = "tomato";
   document.getElementById("pan-3").style.background = "yellow";
   document.getElementById("pan-4").style.background = "lightskyblue";
+  if (difficulty === 6 || difficulty === 8) {
+    document.getElementById("pan-5").style.background = "aqua";
+    document.getElementById("pan-6").style.background = "fuchsia";
+    if(difficulty === 8) {
+      document.getElementById("pan-7").style.background = "#ff8000";
+      document.getElementById("pan-8").style.background = "#666699";
+    }
+  }
 }
 
 //turn off lights
@@ -209,6 +245,14 @@ function lightsOff() {
   document.getElementById("pan-2").style.background = "darkred";
   document.getElementById("pan-3").style.background = "goldenrod";
   document.getElementById("pan-4").style.background = "darkblue";
+  if (difficulty === 6 || difficulty === 8) {
+    document.getElementById("pan-5").style.background = "teal";
+    document.getElementById("pan-6").style.background = "purple";
+    if (difficulty === 8) {
+      document.getElementById("pan-7").style.background = "#804000";
+      document.getElementById("pan-8").style.background = "#33334d";
+    }
+  }
 }
 
 //lights up panel one
@@ -251,6 +295,47 @@ function four() {
   delayLightsOff();
   console.log(player);
 }
+
+function five() {
+  document.getElementById("pan-5").style.background = "aqua"; 
+  if(sound) {
+    var audio = document.getElementById("sound-5");
+    audio.play();
+  }
+  delayLightsOff();
+  console.log(player);
+}
+
+function six() {
+  document.getElementById("pan-6").style.background = "fuchsia"; 
+  if(sound) {
+    var audio = document.getElementById("sound-6");
+    audio.play();
+  }
+  delayLightsOff();
+  console.log(player);
+}
+
+function seven() {
+  document.getElementById("pan-7").style.background = "#ff8000"; 
+  if(sound) {
+    var audio = document.getElementById("sound-7");
+    audio.play();
+  }
+  delayLightsOff();
+  console.log(player);
+}
+
+function eight() {
+  document.getElementById("pan-8").style.background = "#666699"; 
+  if(sound) {
+    var audio = document.getElementById("sound-8");
+    audio.play();
+  }
+  delayLightsOff();
+  console.log(player);
+}
+
 
 function winGame() {
   levelDisplay.innerHTML = "Win!";

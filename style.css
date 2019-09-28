@@ -11,6 +11,10 @@ h1 {
   text-align: center;
 }
 
+.row {
+  margin: 20px 0;
+}
+
 #panels {
   text-align: center;
 }
@@ -58,6 +62,9 @@ h1 {
   background: #33334d;
 }
 
+#start, #reset, .level {
+  visibility: hidden;
+}
 
 .level, .button {
   text-align: center;
@@ -68,6 +75,7 @@ h1 {
   background: rgb(46, 51, 56);
   color: white;
   border-radius: 5px;
+  margin: 0 10px;
 }
 
 .button:hover {

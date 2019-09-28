@@ -6,7 +6,7 @@ var player = [];
 var sequence = [];
 //difficulty = 4
 //normal, advance 6 panels, impossible 8 panels
-var difficulty = 8;
+var difficulty = 0;
 //sequenceCount
 var sequenceCount = 0;
 //lightInterval for setInterval
@@ -24,9 +24,31 @@ var clickEnabled = false;
 var startButton = document.getElementById("start");
 var resetButton = document.getElementById("reset");
 var levelDisplay = document.querySelector(".level");
+var normalButton = document.getElementById("normal");
+var advanceButton = document.getElementById("advance");
+var masterButton = document.getElementById("master");
 
 startButton.addEventListener("click", startGame);
 resetButton.addEventListener("click", resetGame);
+normalButton.addEventListener("click", setDifficulty);
+advanceButton.addEventListener("click", setDifficulty);
+masterButton.addEventListener("click", setDifficulty);
+
+function setDifficulty(event) {
+  startButton.style.visibility = "visible";
+  resetButton.style.visibility = "visible";
+  levelDisplay.style.visibility = "visible";
+  normalButton.style.visibility = "hidden";
+  advanceButton.style.visibility = "hidden";
+  masterButton.style.visibility = "hidden";
+  if (event.target.id === "normal") {
+    difficulty = 4;
+  } else if (event.target.id === "advance") {
+    difficulty = 6;
+  } else if (event.target.id === "master") {
+    difficulty = 8;
+  }
+}
 
 function startGame() {
   startButton.style.visibility = "hidden";
@@ -52,7 +74,11 @@ function generatePanels () {
 }
 
 function resetGame() {
-  startButton.style.visibility = "";
+  resetButton.style.visibility = "hidden";
+  levelDisplay.style.visibility = "hidden";
+  normalButton.style.visibility = "visible";
+  advanceButton.style.visibility = "visible";
+  masterButton.style.visibility = "visible";
   lvlCount = 1;
   levelDisplay.innerHTML = "-";
   player = [];

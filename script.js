@@ -74,6 +74,7 @@ function generatePanels () {
 }
 
 function resetGame() {
+  startButton.style.visibility = "hidden";
   resetButton.style.visibility = "hidden";
   levelDisplay.style.visibility = "hidden";
   normalButton.style.visibility = "visible";

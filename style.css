@@ -4,15 +4,11 @@ body {
 
 h1 {
   color: rgb(46, 51, 56);
-  margin: 50px 0;
+  margin: 30px 0;
 }
 
 .container {
   text-align: center;
-}
-
-.row {
-  margin: 20px 0;
 }
 
 #panels {
@@ -23,8 +19,8 @@ h1 {
   border: 5px solid black;
   border-radius: 5px;
   margin: 50px 10px;
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   color: transparent;
   display: inline-block;
   text-align: center;

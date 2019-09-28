@@ -16,91 +16,46 @@ h1 {
 }
 
 .panel {
-  border-top: 5px solid black;
-  border-bottom: 5px solid black;
+  border: 5px solid black;
   border-radius: 5px;
   margin: 50px 10px;
+  width: 200px;
+  height: 200px;
+  color: transparent;
+  display: inline-block;
   text-align: center;
 }
 
 #pan-1 {
-  border: 5px solid black;
-  color: transparent;
-  width: 200px;
-  height: 200px;
-  display: inline-block;
   background: darkgreen;
-  /* margin: 50px auto; */
 }
 
 #pan-2 {
-  border: 5px solid black;
-  color: transparent;
-  width: 200px;
-  height: 200px;
-  display: inline-block;
   background: darkred;
-  /* margin: 50px auto; */
 }
 
 #pan-3 {
-  border: 5px solid black;
-  color: transparent;
-  width: 200px;
-  height: 200px;
-  display: inline-block;
   background: goldenrod;
-  /* margin: 50px auto; */
 }
 
 #pan-4 {
-  border: 5px solid black;
-  color: transparent;
-  width: 200px;
-  height: 200px;
-  display: inline-block;
   background: darkblue;
-  /* margin: 50px auto; */
 }
 
 #pan-5 {
-  border: 5px solid black;
-  color: transparent;
-  width: 200px;
-  height: 200px;
-  display: inline-block;
   background: teal;
-  /* margin: 50px auto; */
 }
 
 #pan-6 {
-  border: 5px solid black;
-  color: transparent;
-  width: 200px;
-  height: 200px;
-  display: inline-block;
   background: purple;
-  /* margin: 50px auto; */
 }
 
 #pan-7 {
-  border: 5px solid black;
-  color: transparent;
-  width: 200px;
-  height: 200px;
-  display: inline-block;
   background: #804000;
-  /* margin: 50px auto; */
 }
 
 #pan-8 {
-  border: 5px solid black;
-  color: transparent;
-  width: 200px;
-  height: 200px;
-  display: inline-block;
   background: #33334d;
-  /* margin: 50px auto; */
 }
 
 
@@ -117,4 +72,32 @@ h1 {
 
 .button:hover {
   border: 2px solid white;
+}
+
+@media only screen and (max-width: 1140px) {
+  .panel {
+    width: 125px;
+    height: 125px;
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .panel {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .panel {
+    width: 75px;
+    height: 75px;
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  .panel {
+    width: 50px;
+    height: 50px;
+  }
 }

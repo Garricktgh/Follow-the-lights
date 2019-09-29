@@ -30,20 +30,47 @@ var levelDisplay = document.querySelector(".level");
 var normalButton = document.getElementById("normal");
 var advanceButton = document.getElementById("advance");
 var masterButton = document.getElementById("master");
+var originalButton = document.getElementById("original");
+var colorlessButton = document.getElementById("colorless");
+var reverseButton = document.getElementById("reverse");
+var cRButton = document.getElementById("cR");
 
 startButton.addEventListener("click", startGame);
 resetButton.addEventListener("click", resetGame);
 normalButton.addEventListener("click", setDifficulty);
 advanceButton.addEventListener("click", setDifficulty);
 masterButton.addEventListener("click", setDifficulty);
+originalButton.addEventListener("click", pickMode);
+colorlessButton.addEventListener("click", pickMode);
+reverseButton.addEventListener("click", pickMode);
+cRButton.addEventListener("click", pickMode);
+
+function pickMode(event) {
+  originalButton.style.display = "none";
+  colorlessButton.style.display = "none";
+  reverseButton.style.display = "none";
+  cRButton.style.display = "none";
+  normalButton.style.display = "inline";
+  advanceButton.style.display = "inline";
+  masterButton.style.display = "inline";
+  if (event.target.id === "original") {
+    gameMode = 0;
+  } else if (event.target.id === "colorless") {
+    gameMode = 1;
+  } else if (event.target.id === "reverse") {
+    gameMode = 2;
+  } else if (event.target.id === "cR") {
+    gameMode = 3;
+  }
+}
 
 function setDifficulty(event) {
   startButton.style.visibility = "visible";
   resetButton.style.visibility = "visible";
   levelDisplay.style.visibility = "visible";
   normalButton.style.display = "none";
-  advanceButton.style.display = "none";;
-  masterButton.style.display = "none";;
+  advanceButton.style.display = "none";
+  masterButton.style.display = "none";
   if (event.target.id === "normal") {
     difficulty = 4;
   } else if (event.target.id === "advance") {
@@ -83,9 +110,10 @@ function resetGame() {
   startButton.style.visibility = "hidden";
   resetButton.style.visibility = "hidden";
   levelDisplay.style.visibility = "hidden";
-  normalButton.style.display = "inline";
-  advanceButton.style.display = "inline";
-  masterButton.style.display = "inline";
+  originalButton.style.display = "inline";
+  colorlessButton.style.display = "inline";
+  reverseButton.style.display = "inline";
+  cRButton.style.display = "inline";
   lvlCount = 1;
   levelDisplay.innerHTML = "-";
   aISeq = [];

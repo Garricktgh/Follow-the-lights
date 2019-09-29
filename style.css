@@ -62,6 +62,10 @@ h1 {
   visibility: hidden;
 }
 
+#normal, #advance, #master {
+  display: none;
+}
+
 .level, .button {
   text-align: center;
   font-size: 20px;

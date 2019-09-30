@@ -90,7 +90,7 @@
   levelDisplay.innerHTML = "Level : " + lvlCount;
   generatePanels();
   fillLightSequence();
-  lightInterval = setInterval(gameHandler, 810);
+  lightInterval = setInterval(gameHandler, 1000);
   }
 
   //generate panels
@@ -274,7 +274,7 @@
     lvlCount ++;
     levelDisplay.innerHTML = "Level : " + lvlCount;
     sequenceCount = 0;
-    lightInterval = setInterval(gameHandler, 810);
+    lightInterval = setInterval(gameHandler, 1000);
     console.log(sequenceCount);
     console.log(lvlCount);
   }
@@ -288,7 +288,7 @@
   sequenceCount = 0;
   aI = true;
   sound = true;
-  lightInterval = setInterval(gameHandler, 810);
+  lightInterval = setInterval(gameHandler, 1000);
   }
 
   //handles lights delay

@@ -1,51 +1,54 @@
-//level counter
-var lvlCount = 1;
-//create player array
-var player = [];
-//create sequence array
-var sequence = [];
-//difficulty = 4
-//normal, advance 6 panels, impossible 8 panels
-var difficulty = 0;
-//sequenceCount
-var sequenceCount = 0;
-//lightInterval for setInterval
-var lightInterval;
-var sequenceInterval;
-//sound 
-var sound = true;
-//check to see if it is AI turn
-var aI = true;
-//check if player input is correct
-var correct = true;
-//enable player input
-var clickEnabled = false;
-//different game modes
-var gameMode = 3;
-var aISeq = [];
+//make the entire code an annon function, using Immediately Invoked Function Expressions (IIFE)
+(function(){
+  //level counter
+  var lvlCount = 1;
+  //create player array
+  var player = [];
+  //create sequence array
+  var sequence = [];
+  //difficulty = 4
+  //normal, advance 6 panels, impossible 8 panels
+  var difficulty = 0;
+  //sequenceCount
+  var sequenceCount = 0;
+  //lightInterval for setInterval
+  var lightInterval;
+  var sequenceInterval;
+  //sound 
+  var sound = true;
+  //check to see if it is AI turn
+  var aI = true;
+  //check if player input is correct
+  var correct = true;
+  //enable player input
+  var clickEnabled = false;
+  //different game modes
+  var gameMode = 0;
+  //aiSeq for reverse mode
+  var aISeq = [];
 
-var startButton = document.getElementById("start");
-var resetButton = document.getElementById("reset");
-var levelDisplay = document.querySelector(".level");
-var normalButton = document.getElementById("normal");
-var advanceButton = document.getElementById("advance");
-var masterButton = document.getElementById("master");
-var originalButton = document.getElementById("original");
-var colorlessButton = document.getElementById("colorless");
-var reverseButton = document.getElementById("reverse");
-var cRButton = document.getElementById("cR");
+  var startButton = document.getElementById("start");
+  var resetButton = document.getElementById("reset");
+  var levelDisplay = document.querySelector(".level");
+  var normalButton = document.getElementById("normal");
+  var advanceButton = document.getElementById("advance");
+  var masterButton = document.getElementById("master");
+  var originalButton = document.getElementById("original");
+  var colorlessButton = document.getElementById("colorless");
+  var reverseButton = document.getElementById("reverse");
+  var cRButton = document.getElementById("cR");
 
-startButton.addEventListener("click", startGame);
-resetButton.addEventListener("click", resetGame);
-normalButton.addEventListener("click", setDifficulty);
-advanceButton.addEventListener("click", setDifficulty);
-masterButton.addEventListener("click", setDifficulty);
-originalButton.addEventListener("click", pickMode);
-colorlessButton.addEventListener("click", pickMode);
-reverseButton.addEventListener("click", pickMode);
-cRButton.addEventListener("click", pickMode);
+  startButton.addEventListener("click", startGame);
+  resetButton.addEventListener("click", resetGame);
+  normalButton.addEventListener("click", setDifficulty);
+  advanceButton.addEventListener("click", setDifficulty);
+  masterButton.addEventListener("click", setDifficulty);
+  originalButton.addEventListener("click", pickMode);
+  colorlessButton.addEventListener("click", pickMode);
+  reverseButton.addEventListener("click", pickMode);
+  cRButton.addEventListener("click", pickMode);
 
-function pickMode(event) {
+  function pickMode(event) {
   originalButton.style.display = "none";
   colorlessButton.style.display = "none";
   reverseButton.style.display = "none";
@@ -53,6 +56,7 @@ function pickMode(event) {
   normalButton.style.display = "inline";
   advanceButton.style.display = "inline";
   masterButton.style.display = "inline";
+
   if (event.target.id === "original") {
     gameMode = 0;
   } else if (event.target.id === "colorless") {
@@ -62,15 +66,16 @@ function pickMode(event) {
   } else if (event.target.id === "cR") {
     gameMode = 3;
   }
-}
+  }
 
-function setDifficulty(event) {
+  function setDifficulty(event) {
   startButton.style.visibility = "visible";
   resetButton.style.visibility = "visible";
   levelDisplay.style.visibility = "visible";
   normalButton.style.display = "none";
   advanceButton.style.display = "none";
   masterButton.style.display = "none";
+
   if (event.target.id === "normal") {
     difficulty = 4;
   } else if (event.target.id === "advance") {
@@ -78,18 +83,18 @@ function setDifficulty(event) {
   } else if (event.target.id === "master") {
     difficulty = 8;
   }
-}
+  }
 
-function startGame() {
+  function startGame() {
   startButton.style.visibility = "hidden";
   levelDisplay.innerHTML = "Level : " + lvlCount;
   generatePanels();
   fillLightSequence();
   lightInterval = setInterval(gameHandler, 810);
-}
+  }
 
-//generate panels
-function generatePanels () {
+  //generate panels
+  function generatePanels () {
   var tempHolder = document.createElement("div");
   tempHolder.setAttribute("id", "tempHolder");
   for (var i = 1; i <= difficulty; i++) {
@@ -104,9 +109,9 @@ function generatePanels () {
     tempHolder.appendChild(panel);
   }
   document.getElementById("panels").appendChild(tempHolder);
-}
+  }
 
-function resetGame() {
+  function resetGame() {
   startButton.style.visibility = "hidden";
   resetButton.style.visibility = "hidden";
   levelDisplay.style.visibility = "hidden";
@@ -126,10 +131,10 @@ function resetGame() {
   clickEnabled = false;
   clearInterval(lightInterval);
   document.getElementById("panels").removeChild(document.getElementById("tempHolder"));
-}
+  }
 
-//handles starting and ending of automatic sequence
-function gameHandler() {
+  //handles starting and ending of automatic sequence
+  function gameHandler() {
   levelDisplay.innerHTML = "Level : " + lvlCount;
   if (sequenceCount === lvlCount) {
     clearInterval(lightInterval);
@@ -140,10 +145,10 @@ function gameHandler() {
   if(aI) {
     sequenceInterval = setTimeout(runSequence, 800);
   } 
-}
+  }
 
-//run automatic sequence
-function runSequence() {
+  //run automatic sequence
+  function runSequence() {
   console.log("runSequence");
   lightsOff();
   if (sequence[sequenceCount] === 1) {
@@ -172,20 +177,20 @@ function runSequence() {
     aISeq.push(8);
   }
   sequenceCount++;
-}
+  }
 
-//generate light sequence
-function fillLightSequence() {
+  //generate light sequence
+  function fillLightSequence() {
   for (var i = 1; i<= 20; i++) {
     //use math.random to generate sequence
     var lightSequence = Math.floor((Math.random() * difficulty) +1);
     sequence.push(lightSequence);
   }
   console.log(sequence);
-}
+  }
 
-//track user input
-function lightUpPanel(event) {
+  //track user input
+  function lightUpPanel(event) {
   var panelClicked = event.target
   if (clickEnabled) {
     clickEnabled = false;
@@ -223,9 +228,9 @@ function lightUpPanel(event) {
       eight();
     }
   }
-}
+  }
 
-function match() {
+  function match() {
   //if user input does not match sequence
   if (gameMode === 2 || gameMode === 3) {
     var rAIseq = aISeq.slice().reverse();
@@ -249,10 +254,10 @@ function match() {
       matchOutcomes();
     }
   } 
-}
+  }
 
-//actions taken after matching
-function matchOutcomes() {
+  //actions taken after matching
+  function matchOutcomes() {
   //if input is wrong
   if (correct === false) {
     player = [];
@@ -273,10 +278,10 @@ function matchOutcomes() {
     console.log(sequenceCount);
     console.log(lvlCount);
   }
-}
+  }
 
-//re-run previous sequence
-function reactivateAuto() {
+  //re-run previous sequence
+  function reactivateAuto() {
   lightsAll();
   levelDisplay.innerHTML = "Wrong!";
   delayLightsOff();
@@ -284,25 +289,25 @@ function reactivateAuto() {
   aI = true;
   sound = true;
   lightInterval = setInterval(gameHandler, 810);
-}
+  }
 
-//handles lights delay
-function delayLightsOff() {
+  //handles lights delay
+  function delayLightsOff() {
   setTimeout(lightsOff, 300);
-}
+  }
 
-//limits spam clicks
-function delayClickEnabled() {
+  //limits spam clicks
+  function delayClickEnabled() {
   setTimeout(enableClick, 600);
-}
+  }
 
-//enable user input
-function enableClick() {
+  //enable user input
+  function enableClick() {
   clickEnabled = true;
-}
+  }
 
-//turn on all lights
-function lightsAll() {
+  //turn on all lights
+  function lightsAll() {
   if (gameMode === 1 || gameMode === 3) {
     document.getElementById("pan-1").style.background = "floralwhite";
     document.getElementById("pan-2").style.background = "floralwhite";
@@ -330,10 +335,10 @@ function lightsAll() {
       }
     }
   }
-}
+  }
 
-//turn off lights
-function lightsOff() {
+  //turn off lights
+  function lightsOff() {
   if (gameMode === 1 || gameMode === 3) {
     document.getElementById("pan-1").style.background = "dimGrey";
     document.getElementById("pan-2").style.background = "dimGrey";
@@ -361,10 +366,10 @@ function lightsOff() {
       }
     }
   }
-}
+  }
 
-//lights up panel one
-function one() {
+  //lights up panel one
+  function one() {
   if (gameMode === 1 || gameMode === 3) {
     document.getElementById("pan-1").style.background = "floralwhite";
   } else { 
@@ -376,10 +381,10 @@ function one() {
   }
   delayLightsOff();
   console.log(player);
-  
-}
 
-function two() {
+  }
+
+  function two() {
   if (gameMode === 1 || gameMode === 3) {
     document.getElementById("pan-2").style.background = "floralwhite";
   } else {
@@ -391,9 +396,9 @@ function two() {
   }
   delayLightsOff();
   console.log(player);
-}
+  }
 
-function three() {
+  function three() {
   if (gameMode === 1 || gameMode === 3) {
     document.getElementById("pan-3").style.background = "floralwhite";
   } else {
@@ -405,9 +410,9 @@ function three() {
   }
   delayLightsOff();
   console.log(player);
-}
+  }
 
-function four() {
+  function four() {
   if (gameMode === 1 || gameMode === 3) {
     document.getElementById("pan-4").style.background = "floralwhite";
   } else {
@@ -419,9 +424,9 @@ function four() {
   }
   delayLightsOff();
   console.log(player);
-}
+  }
 
-function five() {
+  function five() {
   if (gameMode === 1 || gameMode === 3) {
     document.getElementById("pan-5").style.background = "floralwhite";
   } else {
@@ -433,10 +438,10 @@ function five() {
   }
   delayLightsOff();
   console.log(player);
- 
-}
 
-function six() {
+  }
+
+  function six() {
   if (gameMode === 1 || gameMode === 3) {
     document.getElementById("pan-6").style.background = "floralwhite";
   } else {
@@ -448,9 +453,9 @@ function six() {
   }
   delayLightsOff();
   console.log(player);
-}
+  }
 
-function seven() {
+  function seven() {
   if (gameMode === 1 || gameMode === 3) {
     document.getElementById("pan-7").style.background = "floralwhite";
   } else { 
@@ -462,9 +467,9 @@ function seven() {
   }
   delayLightsOff();
   console.log(player);
-}
+  }
 
-function eight() {
+  function eight() {
   if (gameMode === 1 || gameMode === 3) {
     document.getElementById("pan-8").style.background = "floralwhite";
   } else { 
@@ -476,10 +481,10 @@ function eight() {
   }
   delayLightsOff();
   console.log(player);
-}
+  }
 
 
-function winGame() {
+  function winGame() {
   levelDisplay.innerHTML = "Win!";
   clearInterval(lightInterval);
   console.log("clear all intervals");
@@ -487,5 +492,8 @@ function winGame() {
   clickEnabled = false;
   aI = false;
   lightsAll();
-}
+  }
 
+
+
+})()

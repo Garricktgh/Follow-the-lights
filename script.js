@@ -48,7 +48,9 @@
   reverseButton.addEventListener("click", pickMode);
   cRButton.addEventListener("click", pickMode);
 
+
   function pickMode(event) {
+ 
   originalButton.style.display = "none";
   colorlessButton.style.display = "none";
   reverseButton.style.display = "none";
@@ -86,6 +88,8 @@
   }
 
   function startGame() {
+  document.querySelector(".run").style.display = "none";
+  document.querySelector(".lights").style.display = "none";
   startButton.style.visibility = "hidden";
   levelDisplay.innerHTML = "Level : " + lvlCount;
   generatePanels();
@@ -112,6 +116,8 @@
   }
 
   function resetGame() {
+  document.querySelector(".run").style.display = "flex";
+  document.querySelector(".lights").style.display = "flex";
   startButton.style.visibility = "hidden";
   resetButton.style.visibility = "hidden";
   levelDisplay.style.visibility = "hidden";

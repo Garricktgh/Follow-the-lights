@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <audio id="sound-1"><source src="audio/sound1.mp3"></audio>
     <audio id="sound-2"><source src="audio/sound2.mp3"></audio>
@@ -19,7 +20,7 @@
   </head>
   <body>
     <div class="container">
-      <h1>Follow The Lights !</h1> 
+      <h1 class="blink">Follow The Lights!</h1> 
       <div class="d-flex justify-content-around row">
         <button type="button" id="start" class="button">Start</button>
         <div class="level">-</div>
@@ -38,6 +39,11 @@
     <div class = "row col-12">
       <div id="panels" class="col-12"></div>
     </div>
+    <div class="row col-12 d-flex justify-content-center row">
+      <img src="https://thumbs.gfycat.com/PointedFrailArrowworm-size_restricted.gif" class="run">
+      <img src="https://i.gifer.com/y0.gif" class="lights">
+    </div>
+   
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

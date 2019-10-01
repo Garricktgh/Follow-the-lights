@@ -1,7 +1,7 @@
 //make the entire code an annon function, using Immediately Invoked Function Expressions (IIFE)
 (function(){
   //level counter
-  var lvlCount = 19;
+  var lvlCount = 1;
   //create player array
   var player = [];
   //create sequence array
@@ -83,7 +83,6 @@
   }
   
   function setDifficulty(event) {
-    console.log("test");
     originalButton.style.display = "none";
     colorlessButton.style.display = "none";
     reverseButton.style.display = "none";
@@ -189,7 +188,6 @@
       aI = false;
       delayClickEnabled();
     }
-    console.log("gameHand");
     if(aI) {
       sequenceInterval = setTimeout(runSequence, 600);
     } 
@@ -197,7 +195,6 @@
 
   //run automatic sequence
   function runSequence() {
-    console.log("runSequence");
     lightsOff();
     if (sequence[sequenceCount] === 1) {
       one();
@@ -234,7 +231,6 @@
       var lightSequence = Math.floor((Math.random() * difficulty) +1);
       sequence.push(lightSequence);
     }
-    console.log(sequence);
   }
 
   //track user input
@@ -323,8 +319,6 @@
       levelDisplay.innerHTML = "Level : " + lvlCount;
       sequenceCount = 0;
       lightInterval = setInterval(gameHandler, 700);
-      console.log(sequenceCount);
-      console.log(lvlCount);
     }
   }
 
@@ -428,7 +422,6 @@
       audio.play();
     }
     delayLightsOff();
-    console.log(player);
   }
 
   function two() {
@@ -442,7 +435,6 @@
       audio.play();
     }
     delayLightsOff();
-    console.log(player);
   }
 
   function three() {
@@ -456,7 +448,6 @@
     audio.play();
   }
   delayLightsOff();
-  console.log(player);
   }
 
   function four() {
@@ -470,7 +461,6 @@
     audio.play();
   }
   delayLightsOff();
-  console.log(player);
   }
 
   function five() {
@@ -484,8 +474,6 @@
     audio.play();
   }
   delayLightsOff();
-  console.log(player);
-
   }
 
   function six() {
@@ -499,7 +487,6 @@
     audio.play();
   }
   delayLightsOff();
-  console.log(player);
   }
 
   function seven() {
@@ -513,7 +500,6 @@
     audio.play();
   }
   delayLightsOff();
-  console.log(player);
   }
 
   function eight() {
@@ -527,20 +513,15 @@
     audio.play();
   }
   delayLightsOff();
-  console.log(player);
   }
-
 
   function winGame() {
   levelDisplay.innerHTML = "Win!";
   clearInterval(lightInterval);
-  console.log("clear all intervals");
   clearInterval(sequenceInterval);
   clickEnabled = false;
   aI = false;
   lightsAll();
   }
-
-
 
 })()

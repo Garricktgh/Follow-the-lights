@@ -17,5 +17,5 @@ The panels becomes the same color and the player has to memorize the location.
 # Reverse
 The player has to memorize the sequence backwards.
 
-# Colorless and Reverse
+# Colorless and Reverse (C & R)
 The panels becomes the same color and the player has to memorize the sequence backwards

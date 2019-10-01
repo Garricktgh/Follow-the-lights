@@ -28,7 +28,7 @@
   var aISeq = [];
 
   var startButton = document.getElementById("start");
-  var resetButton = document.getElementById("reset");
+  var menuButton = document.getElementById("menu");
   var levelDisplay = document.querySelector(".level");
   var normalButton = document.getElementById("normal");
   var advanceButton = document.getElementById("advance");
@@ -37,9 +37,12 @@
   var colorlessButton = document.getElementById("colorless");
   var reverseButton = document.getElementById("reverse");
   var cRButton = document.getElementById("cR");
+  var backButton1 = document.getElementById("back1");
+  var backButton2 = document.getElementById("back2");
+  var backButton3 = document.getElementById("back3");
 
   startButton.addEventListener("click", startGame);
-  resetButton.addEventListener("click", resetGame);
+  menuButton.addEventListener("click", resetGame);
   normalButton.addEventListener("click", setDifficulty);
   advanceButton.addEventListener("click", setDifficulty);
   masterButton.addEventListener("click", setDifficulty);
@@ -47,9 +50,16 @@
   colorlessButton.addEventListener("click", pickMode);
   reverseButton.addEventListener("click", pickMode);
   cRButton.addEventListener("click", pickMode);
+  backButton1.addEventListener("click", resetGame);
+  backButton2.addEventListener("click", resetGame);
+  backButton3.addEventListener("click", setDifficulty);
 
 
   function pickMode(event) {
+    startButton.style.display = "none";
+    menuButton.style.display = "none";
+    levelDisplay.style.display = "none";
+    backButton1.style.display = "none";
     originalButton.style.display = "none";
     colorlessButton.style.display = "none";
     reverseButton.style.display = "none";
@@ -57,6 +67,9 @@
     normalButton.style.display = "inline";
     advanceButton.style.display = "inline";
     masterButton.style.display = "inline";
+    backButton2.style.display = "none";
+    backButton1.style.display = "inline";
+    backButton3.style.display = "none";
 
     if (event.target.id === "original") {
       gameMode = 0;
@@ -70,14 +83,21 @@
   }
   
   function setDifficulty(event) {
-    startButton.style.visibility = "visible";
+    console.log("test");
+    originalButton.style.display = "none";
+    colorlessButton.style.display = "none";
+    reverseButton.style.display = "none";
+    cRButton.style.display = "none";
+    backButton1.style.display = "none";
+    backButton2.style.display = "inline";
+    backButton3.style.display = "none";
     startButton.style.display = "inline";
-    resetButton.style.display = "inline";
-    levelDisplay.style.display = "inline";
+    menuButton.style.display = "none";
+    levelDisplay.style.display = "none";
     normalButton.style.display = "none";
     advanceButton.style.display = "none";
     masterButton.style.display = "none";
-
+   
     if (event.target.id === "normal") {
       difficulty = 4;
     } else if (event.target.id === "advance") {
@@ -90,11 +110,13 @@
   function startGame() {
     document.querySelector(".run").style.display = "none";
     document.querySelector(".lights").style.display = "none";
-    startButton.style.visibility = "hidden";
+    startButton.style.display = "none";
+    menuButton.style.display = "inline";
+    levelDisplay.style.display = "inline";
     levelDisplay.innerHTML = "Level : " + lvlCount;
     generatePanels();
     fillLightSequence();
-    lightInterval = setInterval(gameHandler, 1000);
+    lightInterval = setInterval(gameHandler, 700);
   }
 
   //generate panels
@@ -115,18 +137,37 @@
     document.getElementById("panels").appendChild(tempHolder);
   }
 
-  function resetGame() {
+  function resetGame(event) {
+    if (event.target.id === "back1" || event.target.id === "menu") {
+      document.querySelector(".run").style.display = "flex";
+      document.querySelector(".lights").style.display = "flex";
+      backButton1.style.display = "none";
+      normalButton.style.display = "none";
+      advanceButton.style.display = "none";
+      masterButton.style.display = "none";
+      originalButton.style.display = "inline";
+      colorlessButton.style.display = "inline";
+      reverseButton.style.display = "inline";
+      cRButton.style.display = "inline";
+    } else if (event.target.id === "back2") {
+      backButton1.style.display = "inline";
+      normalButton.style.display = "inline";
+      advanceButton.style.display = "inline";
+      masterButton.style.display = "inline";
+      originalButton.style.display = "none";
+      colorlessButton.style.display = "none";
+      reverseButton.style.display = "none";
+      cRButton.style.display = "none";
+    }
     document.querySelector(".run").style.display = "flex";
     document.querySelector(".lights").style.display = "flex";
+    backButton2.style.display = "none";
+    backButton3.style.display = "none";
     startButton.style.display = "none";
-    resetButton.style.display = "none";
     levelDisplay.style.display = "none";
-    originalButton.style.display = "inline";
-    colorlessButton.style.display = "inline";
-    reverseButton.style.display = "inline";
-    cRButton.style.display = "inline";
+    menuButton.style.display = "none";
+    levelDisplay.style.display = "none";
     lvlCount = 1;
-    levelDisplay.innerHTML = "-";
     aISeq = [];
     player = [];
     sequence = [];
@@ -137,6 +178,7 @@
     clickEnabled = false;
     clearInterval(lightInterval);
     document.getElementById("panels").removeChild(document.getElementById("tempHolder"));
+    
   }
 
   //handles starting and ending of automatic sequence
@@ -149,7 +191,7 @@
     }
     console.log("gameHand");
     if(aI) {
-      sequenceInterval = setTimeout(runSequence, 800);
+      sequenceInterval = setTimeout(runSequence, 500);
     } 
   }
 
@@ -269,7 +311,7 @@
       player = [];
       aISeq = [];
       correct = true;
-      setTimeout (reactivateAuto, 800);
+      setTimeout (reactivateAuto, 600);
     } else if (player.length < lvlCount) {  //if input is correct but haven't complete entering the sequence
       delayClickEnabled();
     } else if (lvlCount === player.length && correct) { //if player input sequence is correct and matches sequence
@@ -280,7 +322,7 @@
       lvlCount ++;
       levelDisplay.innerHTML = "Level : " + lvlCount;
       sequenceCount = 0;
-      lightInterval = setInterval(gameHandler, 1000);
+      lightInterval = setInterval(gameHandler, 700);
       console.log(sequenceCount);
       console.log(lvlCount);
     }
@@ -294,7 +336,7 @@
     sequenceCount = 0;
     aI = true;
     sound = true;
-    lightInterval = setInterval(gameHandler, 1000);
+    lightInterval = setInterval(gameHandler, 700);
   }
 
   //handles lights delay
@@ -304,7 +346,7 @@
 
   //limits spam clicks
   function delayClickEnabled() {
-    setTimeout(enableClick, 600);
+    setTimeout(enableClick, 550);
   }
 
   //enable user input

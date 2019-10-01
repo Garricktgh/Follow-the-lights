@@ -1,7 +1,5 @@
 body {
   background-image: url("https://bcc53877d7aa0a135b9a-1452ca75bf8985207bb5b0c44a65ef28.ssl.cf4.rackcdn.com/Product-800x800/8db5b973-cf4d-487c-9d68-d676cdb1fd05.jpg");
-
-
 }
 
 h1 {
@@ -25,11 +23,18 @@ h1 {
   justify-content: center;
 }
 
+.row {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
 .run {
   opacity: 0.5;
-  margin: 50px 0;
+  margin: 50px auto;
   display: flex;
-  position: absolute;  
+  position: absolute;
+
 }
 
 .lights {
@@ -90,7 +95,7 @@ h1 {
   background: #33334d;
 }
 
-#start, #reset, .level, #normal, #advance, #master {
+#start, #menu, .level, #normal, #advance, #master, #back1, #back2, #back3 {
   display: none;
 }
 

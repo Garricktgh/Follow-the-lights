@@ -1,6 +1,6 @@
 # Follow-the-lights
 
-This project is a remake of a game called [Simon](https://en.wikipedia.org/wiki/Simon_(game)) using HTML, CSS, and Javascript.
+This project is a remake of the game called [Simon](https://en.wikipedia.org/wiki/Simon_(game)) using HTML, CSS, and Javascript.
 
 # Gameplay
 A round in the game consists of the device lighting up one or more buttons in a random order, after which the player must reproduce that order by pressing the buttons. As the game progresses, the number of buttons to be pressed increases.

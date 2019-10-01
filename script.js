@@ -136,6 +136,7 @@
     document.getElementById("panels").appendChild(tempHolder);
   }
 
+  //reset game and show different buttons based on button pressed
   function resetGame(event) {
     if (event.target.id === "back1" || event.target.id === "menu") {
       document.querySelector(".run").style.display = "flex";
@@ -197,28 +198,28 @@
   function runSequence() {
     lightsOff();
     if (sequence[sequenceCount] === 1) {
-      one();
+      onePanel(1);
       aISeq.push(1);
     } else if (sequence[sequenceCount] === 2) {
-      two();
+      onePanel(2);
       aISeq.push(2);
     } else if (sequence[sequenceCount] === 3) {
-      three();
+      onePanel(3);
       aISeq.push(3);
     } else if (sequence[sequenceCount] === 4) {
-      four();
+      onePanel(4);
       aISeq.push(4);
     } else if (sequence[sequenceCount] === 5) {
-      five();
+      onePanel(5);
       aISeq.push(5);
     } else if (sequence[sequenceCount] === 6) {
-      six();
+      onePanel(6);
       aISeq.push(6);
     } else if (sequence[sequenceCount] === 7) {
-      seven();
+      onePanel(7);;
       aISeq.push(7);
     } else if (sequence[sequenceCount] === 8) {
-      eight();
+      onePanel(8);
       aISeq.push(8);
     }
     sequenceCount++;
@@ -241,35 +242,35 @@
       if(panelClicked.id === "pan-1") { 
         player.push(1);
         match();
-        one();
+        onePanel(1);
       } else if(panelClicked.id === "pan-2") { 
         player.push(2);
         match();
-        two();
+        onePanel(2);
       } else if(panelClicked.id === "pan-3") { 
         player.push(3);
         match();
-        three();
+        onePanel(3);
       } else if(panelClicked.id === "pan-4") { 
         player.push(4);
         match();
-        four();
+        onePanel(4);
       } else if(panelClicked.id === "pan-5") { 
         player.push(5);
         match();
-        five();
+        onePanel(5);
       } else if(panelClicked.id === "pan-6") { 
         player.push(6);
         match();
-        six();
+        onePanel(6);
       } else if(panelClicked.id === "pan-7") { 
         player.push(7);
         match();
-        seven();
+        onePanel(7);
       } else if(panelClicked.id === "pan-8") { 
         player.push(8);
         match();
-        eight();
+        onePanel(8);
       }
     }
   }
@@ -340,7 +341,7 @@
 
   //limits spam clicks
   function delayClickEnabled() {
-    setTimeout(enableClick, 570);
+    setTimeout(enableClick, 580);
   }
 
   //enable user input
@@ -410,118 +411,108 @@
     }
   }
 
-  //lights up panel one
-  function one() {
-    if (gameMode === 1 || gameMode === 3) {
-      document.getElementById("pan-1").style.background = "floralwhite";
-    } else { 
-      document.getElementById("pan-1").style.background = "lightgreen";
-    }
-    if(sound) {
-      var audio = document.getElementById("sound-1");
-      audio.play();
+  //lights up one panel
+  function onePanel(panel) {
+    switch (panel) {
+      case 1 :
+          if (gameMode === 1 || gameMode === 3) {
+            document.getElementById("pan-1").style.background = "floralwhite";
+          } else { 
+            document.getElementById("pan-1").style.background = "lightgreen";
+          }
+          if(sound) {
+            var audio = document.getElementById("sound-1");
+            audio.play();
+          }
+      break;
+      case 2 :
+          if (gameMode === 1 || gameMode === 3) {
+            document.getElementById("pan-2").style.background = "floralwhite";
+          } else {
+            document.getElementById("pan-2").style.background = "tomato";
+          }
+          if(sound) {
+            var audio = document.getElementById("sound-2");
+            audio.play();
+          }
+      break;
+      case 3 :
+          if (gameMode === 1 || gameMode === 3) {
+            document.getElementById("pan-3").style.background = "floralwhite";
+          } else {
+            document.getElementById("pan-3").style.background = "yellow";
+          }
+          if(sound) {
+            var audio = document.getElementById("sound-3");
+            audio.play();
+          }
+      break;
+      case 4 :
+          if (gameMode === 1 || gameMode === 3) {
+            document.getElementById("pan-4").style.background = "floralwhite";
+          } else {
+            document.getElementById("pan-4").style.background = "lightskyblue";
+          }
+          if(sound) {
+            var audio = document.getElementById("sound-4");
+            audio.play();
+          }
+      break;
+      case 5 :
+          if (gameMode === 1 || gameMode === 3) {
+            document.getElementById("pan-5").style.background = "floralwhite";
+          } else {
+            document.getElementById("pan-5").style.background = "aqua";
+          }
+          if(sound) {
+            var audio = document.getElementById("sound-5");
+            audio.play();
+          }
+      break;
+      case 6 :
+          if (gameMode === 1 || gameMode === 3) {
+            document.getElementById("pan-6").style.background = "floralwhite";
+          } else {
+            document.getElementById("pan-6").style.background = "fuchsia";
+          }
+          if(sound) {
+            var audio = document.getElementById("sound-6");
+            audio.play();
+          }
+      break;
+      case 7 :
+          if (gameMode === 1 || gameMode === 3) {
+            document.getElementById("pan-7").style.background = "floralwhite";
+          } else { 
+            document.getElementById("pan-7").style.background = "#ff8000";
+          }
+          if(sound) {
+            var audio = document.getElementById("sound-7");
+            audio.play();
+          }
+      break;
+      case 8 :
+          if (gameMode === 1 || gameMode === 3) {
+            document.getElementById("pan-8").style.background = "floralwhite";
+          } else { 
+            document.getElementById("pan-8").style.background = "#666699";
+          }
+          if(sound) {
+            var audio = document.getElementById("sound-8");
+            audio.play();
+          }
+      break;
     }
     delayLightsOff();
-  }
-
-  function two() {
-    if (gameMode === 1 || gameMode === 3) {
-      document.getElementById("pan-2").style.background = "floralwhite";
-    } else {
-      document.getElementById("pan-2").style.background = "tomato";
-    }
-    if(sound) {
-      var audio = document.getElementById("sound-2");
-      audio.play();
-    }
-    delayLightsOff();
-  }
-
-  function three() {
-  if (gameMode === 1 || gameMode === 3) {
-    document.getElementById("pan-3").style.background = "floralwhite";
-  } else {
-    document.getElementById("pan-3").style.background = "yellow";
-  }
-  if(sound) {
-    var audio = document.getElementById("sound-3");
-    audio.play();
-  }
-  delayLightsOff();
-  }
-
-  function four() {
-  if (gameMode === 1 || gameMode === 3) {
-    document.getElementById("pan-4").style.background = "floralwhite";
-  } else {
-    document.getElementById("pan-4").style.background = "lightskyblue";
-  }
-  if(sound) {
-    var audio = document.getElementById("sound-4");
-    audio.play();
-  }
-  delayLightsOff();
-  }
-
-  function five() {
-  if (gameMode === 1 || gameMode === 3) {
-    document.getElementById("pan-5").style.background = "floralwhite";
-  } else {
-    document.getElementById("pan-5").style.background = "aqua";
-  }
-  if(sound) {
-    var audio = document.getElementById("sound-5");
-    audio.play();
-  }
-  delayLightsOff();
-  }
-
-  function six() {
-  if (gameMode === 1 || gameMode === 3) {
-    document.getElementById("pan-6").style.background = "floralwhite";
-  } else {
-    document.getElementById("pan-6").style.background = "fuchsia";
-  }
-  if(sound) {
-    var audio = document.getElementById("sound-6");
-    audio.play();
-  }
-  delayLightsOff();
-  }
-
-  function seven() {
-  if (gameMode === 1 || gameMode === 3) {
-    document.getElementById("pan-7").style.background = "floralwhite";
-  } else { 
-    document.getElementById("pan-7").style.background = "#ff8000";
-  }
-  if(sound) {
-    var audio = document.getElementById("sound-7");
-    audio.play();
-  }
-  delayLightsOff();
-  }
-
-  function eight() {
-  if (gameMode === 1 || gameMode === 3) {
-    document.getElementById("pan-8").style.background = "floralwhite";
-  } else { 
-    document.getElementById("pan-8").style.background = "#666699";
-  }
-  if(sound) {
-    var audio = document.getElementById("sound-8");
-    audio.play();
-  }
-  delayLightsOff();
   }
 
   function winGame() {
-  levelDisplay.innerHTML = "Win!";
-  clearInterval(lightInterval);
-  clearInterval(sequenceInterval);
-  clickEnabled = false;
-  aI = false;
-  lightsAll();
+    levelDisplay.innerHTML = "Win!";
+    clearInterval(lightInterval);
+    clearInterval(sequenceInterval);
+    clickEnabled = false;
+    aI = false;
+    lightsAll();
   }
 
 })()

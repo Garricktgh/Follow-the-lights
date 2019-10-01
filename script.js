@@ -1,7 +1,7 @@
 //make the entire code an annon function, using Immediately Invoked Function Expressions (IIFE)
 (function(){
   //level counter
-  var lvlCount = 1;
+  var lvlCount = 19;
   //create player array
   var player = [];
   //create sequence array
@@ -112,7 +112,7 @@
     document.querySelector(".lights").style.display = "none";
     startButton.style.display = "none";
     menuButton.style.display = "inline";
-    levelDisplay.style.display = "inline";
+    levelDisplay.style.display = "inline-block";
     levelDisplay.innerHTML = "Level : " + lvlCount;
     generatePanels();
     fillLightSequence();

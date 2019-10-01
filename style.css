@@ -119,9 +119,42 @@ h1 {
 }
 
 @media only screen and (max-width: 1140px) {
+  .button, .level {
+    min-width: 75px;
+  } 
+
+  .panel {
+    width: 150px;
+    height: 150px;
+  }
+
+  #tempHolder {
+    width: 800px;
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .button, .level {
+    min-width: 75px;
+  } 
   .panel {
     width: 125px;
     height: 125px;
+  }
+
+  #tempHolder {
+    width: 700px;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .button, .level {
+    min-width: 75px;
+  } 
+
+  .panel {
+    width: 100px;
+    height: 100px;
   }
 
   #tempHolder {
@@ -129,10 +162,18 @@ h1 {
   }
 }
 
-@media only screen and (max-width: 960px) {
+@media only screen and (max-width: 540px) {
+  .rowFormat {
+    min-width: 430px;
+  }
+
+  .button, .level {
+    min-width: 75px;
+  } 
+
   .panel {
-    width: 100px;
-    height: 100px;
+    width: 75px;
+    height: 75px;
   }
 
   #tempHolder {
@@ -140,32 +181,51 @@ h1 {
   }
 }
 
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 440px) {
+  .rowFormat {
+    min-width: 430px;
+  }
+
+  .button, .level {
+    min-width: 75px;
+  } 
+
   .panel {
-    width: 75px;
-    height: 75px;
+    width: 60px;
+    height: 60px;
   }
 
   #tempHolder {
-    width: 400px;
+    width: 440px;
   }
 }
 
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 380px) {
+  .rowFormat {
+    min-width: 320px;
+  }
+
+  .button, .level {
+    min-width: 75px;
+  } 
+
   .panel {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
   }
 
   #tempHolder {
-    width: 300px;
+    width: 320px;
   }
 }
+
+
 
 @-webkit-keyframes blinker {
   from {opacity: 1.0;}
   to {opacity: 0.0;}
 }
+
 .blink{
 	text-decoration: blink;
 	-webkit-animation-name: blinker;

@@ -40,6 +40,7 @@
   var backButton1 = document.getElementById("back1");
   var backButton2 = document.getElementById("back2");
   var backButton3 = document.getElementById("back3");
+  var backButton4 = document.getElementById("back4");
 
   startButton.addEventListener("click", startGame);
   menuButton.addEventListener("click", resetGame);
@@ -53,6 +54,7 @@
   backButton1.addEventListener("click", resetGame);
   backButton2.addEventListener("click", resetGame);
   backButton3.addEventListener("click", setDifficulty);
+  backButton4.addEventListener("click", resetGame);
 
 
   function pickMode(event) {
@@ -70,6 +72,7 @@
     backButton2.style.display = "none";
     backButton1.style.display = "inline";
     backButton3.style.display = "none";
+    backButton4.style.display = "none";
 
     if (event.target.id === "original") {
       gameMode = 0;
@@ -90,6 +93,7 @@
     backButton1.style.display = "none";
     backButton2.style.display = "inline";
     backButton3.style.display = "none";
+    backButton4.style.display = "none";
     startButton.style.display = "inline";
     menuButton.style.display = "none";
     levelDisplay.style.display = "none";
@@ -110,6 +114,8 @@
     document.querySelector(".run").style.display = "none";
     document.querySelector(".lights").style.display = "none";
     startButton.style.display = "none";
+    backButton2.style.display = "none";
+    backButton4.style.display = "inline";
     menuButton.style.display = "inline";
     levelDisplay.style.display = "inline-block";
     levelDisplay.innerHTML = "Level : " + lvlCount;
@@ -142,6 +148,7 @@
       document.querySelector(".run").style.display = "flex";
       document.querySelector(".lights").style.display = "flex";
       backButton1.style.display = "none";
+      startButton.style.display = "none";
       normalButton.style.display = "none";
       advanceButton.style.display = "none";
       masterButton.style.display = "none";
@@ -151,6 +158,8 @@
       cRButton.style.display = "inline";
     } else if (event.target.id === "back2") {
       backButton1.style.display = "inline";
+      backButton2.style.display = "none";
+      startButton.style.display = "none";
       normalButton.style.display = "inline";
       advanceButton.style.display = "inline";
       masterButton.style.display = "inline";
@@ -158,12 +167,21 @@
       colorlessButton.style.display = "none";
       reverseButton.style.display = "none";
       cRButton.style.display = "none";
+    } else if (event.target.id === "back4") {
+      backButton4.style.display = "none";
+      backButton2.style.display = "inline";
+      startButton.style.display = "inline";
+      normalButton.style.display = "none";
+      advanceButton.style.display = "none";
+      masterButton.style.display = "none";
+      originalButton.style.display = "none";
+      colorlessButton.style.display = "none";
+      reverseButton.style.display = "none";
+      cRButton.style.display = "none";
     }
     document.querySelector(".run").style.display = "flex";
     document.querySelector(".lights").style.display = "flex";
-    backButton2.style.display = "none";
     backButton3.style.display = "none";
-    startButton.style.display = "none";
     levelDisplay.style.display = "none";
     menuButton.style.display = "none";
     levelDisplay.style.display = "none";

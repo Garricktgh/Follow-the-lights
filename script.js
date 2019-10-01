@@ -191,7 +191,7 @@
     }
     console.log("gameHand");
     if(aI) {
-      sequenceInterval = setTimeout(runSequence, 500);
+      sequenceInterval = setTimeout(runSequence, 600);
     } 
   }
 
@@ -346,7 +346,7 @@
 
   //limits spam clicks
   function delayClickEnabled() {
-    setTimeout(enableClick, 550);
+    setTimeout(enableClick, 570);
   }
 
   //enable user input

@@ -121,7 +121,7 @@
     levelDisplay.innerHTML = "Level : " + lvlCount;
     generatePanels();
     fillLightSequence();
-    lightInterval = setInterval(gameHandler, 700);
+    lightInterval = setInterval(gameHandler, 800);
   }
 
   //generate panels
@@ -208,7 +208,7 @@
       delayClickEnabled();
     }
     if(aI) {
-      sequenceInterval = setTimeout(runSequence, 600);
+      sequenceInterval = setTimeout(runSequence, 700);
     } 
   }
 
@@ -234,7 +234,7 @@
       onePanel(6);
       aISeq.push(6);
     } else if (sequence[sequenceCount] === 7) {
-      onePanel(7);;
+      onePanel(7);
       aISeq.push(7);
     } else if (sequence[sequenceCount] === 8) {
       onePanel(8);
@@ -326,7 +326,7 @@
       player = [];
       aISeq = [];
       correct = true;
-      setTimeout (reactivateAuto, 600);
+      setTimeout (reactivateAuto, 700);
     } else if (player.length < lvlCount) {  //if input is correct but haven't complete entering the sequence
       delayClickEnabled();
     } else if (lvlCount === player.length && correct) { //if player input sequence is correct and matches sequence
@@ -337,7 +337,7 @@
       lvlCount ++;
       levelDisplay.innerHTML = "Level : " + lvlCount;
       sequenceCount = 0;
-      lightInterval = setInterval(gameHandler, 700);
+      lightInterval = setInterval(gameHandler, 800);
     }
   }
 
@@ -349,7 +349,7 @@
     sequenceCount = 0;
     aI = true;
     sound = true;
-    lightInterval = setInterval(gameHandler, 700);
+    lightInterval = setInterval(gameHandler, 800);
   }
 
   //handles lights delay
@@ -359,7 +359,7 @@
 
   //limits spam clicks
   function delayClickEnabled() {
-    setTimeout(enableClick, 580);
+    setTimeout(enableClick, 600);
   }
 
   //enable user input

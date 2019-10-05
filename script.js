@@ -6,7 +6,6 @@
   var player = [];
   //create sequence array
   var sequence = [];
-  //difficulty = 4
   //normal, advance 6 panels, impossible 8 panels
   var difficulty = 0;
   //sequenceCount

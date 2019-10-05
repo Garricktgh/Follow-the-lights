@@ -13,7 +13,6 @@
   var sequenceCount = 0;
   //lightInterval for setInterval
   var lightInterval;
-  var sequenceInterval;
   //sound 
   var sound = true;
   //check to see if it is AI turn
@@ -26,6 +25,42 @@
   var gameMode = 0;
   //aiSeq for reverse mode
   var aISeq = [];
+
+  //objects for panel colors
+  var colors = {
+    1 : {
+      "off":"darkgreen",
+      "on": "lightgreen" 
+    },
+    2 : {
+      "off":"darkred",
+      "on": "tomato" 
+    },
+    3 : {
+      "off":"goldenrod",
+      "on": "yellow" 
+    },
+    4 : {
+      "off":"darkblue",
+      "on": "lightskyblue" 
+    },
+    5 : {
+      "off":"teal",
+      "on": "aqua" 
+    },
+    6 : {
+      "off":"purple",
+      "on": "fuchsia" 
+    },
+    7 : {
+      "off":"#804000",
+      "on": "#ff8000" 
+    },
+    8 : {
+      "off":"#33334d",
+      "on": "#666699" 
+    }
+  }
 
   var startButton = document.getElementById("start");
   var menuButton = document.getElementById("menu");
@@ -208,7 +243,7 @@
       delayClickEnabled();
     }
     if(aI) {
-      sequenceInterval = setTimeout(runSequence, 700);
+      runSequence();
     } 
   }
 
@@ -326,7 +361,7 @@
       player = [];
       aISeq = [];
       correct = true;
-      setTimeout (reactivateAuto, 700);
+      setTimeout (reactivateAuto, 800);
     } else if (player.length < lvlCount) {  //if input is correct but haven't complete entering the sequence
       delayClickEnabled();
     } else if (lvlCount === player.length && correct) { //if player input sequence is correct and matches sequence
@@ -370,30 +405,12 @@
   //turn on all lights
   function lightsAll() {
     if (gameMode === 1 || gameMode === 3) {
-      document.getElementById("pan-1").style.background = "floralwhite";
-      document.getElementById("pan-2").style.background = "floralwhite";
-      document.getElementById("pan-3").style.background = "floralwhite";
-      document.getElementById("pan-4").style.background = "floralwhite";
-      if (difficulty === 6 || difficulty === 8) {
-        document.getElementById("pan-5").style.background = "floralwhite";
-        document.getElementById("pan-6").style.background = "floralwhite";
-        if(difficulty === 8) {
-          document.getElementById("pan-7").style.background = "floralwhite";
-          document.getElementById("pan-8").style.background = "floralwhite";
-        }
+      for (var i = 1; i <= difficulty; i++){
+        document.getElementById("pan-"+i).style.background = "floralwhite";
       }
     } else {
-      document.getElementById("pan-1").style.background = "lightgreen";
-      document.getElementById("pan-2").style.background = "tomato";
-      document.getElementById("pan-3").style.background = "yellow";
-      document.getElementById("pan-4").style.background = "lightskyblue";
-      if (difficulty === 6 || difficulty === 8) {
-        document.getElementById("pan-5").style.background = "aqua";
-        document.getElementById("pan-6").style.background = "fuchsia";
-        if(difficulty === 8) {
-          document.getElementById("pan-7").style.background = "#ff8000";
-          document.getElementById("pan-8").style.background = "#666699";
-        }
+      for (var i = 1; i <= difficulty; i++){
+        document.getElementById("pan-"+i).style.background = colors[i].on;
       }
     }
   }
@@ -401,125 +418,27 @@
   //turn off lights
   function lightsOff() {
     if (gameMode === 1 || gameMode === 3) {
-      document.getElementById("pan-1").style.background = "dimGrey";
-      document.getElementById("pan-2").style.background = "dimGrey";
-      document.getElementById("pan-3").style.background = "dimGrey";
-      document.getElementById("pan-4").style.background = "dimGrey";
-      if (difficulty === 6 || difficulty === 8) {
-        document.getElementById("pan-5").style.background = "dimGrey";
-        document.getElementById("pan-6").style.background = "dimGrey";
-        if (difficulty === 8) {
-          document.getElementById("pan-7").style.background = "dimGrey";
-          document.getElementById("pan-8").style.background = "dimGrey";
-        }
+      for (var i = 1; i <= difficulty; i++){
+        document.getElementById("pan-"+i).style.background = "dimgrey";
       }
     } else {
-      document.getElementById("pan-1").style.background = "darkgreen";
-      document.getElementById("pan-2").style.background = "darkred";
-      document.getElementById("pan-3").style.background = "goldenrod";
-      document.getElementById("pan-4").style.background = "darkblue";
-      if (difficulty === 6 || difficulty === 8) {
-        document.getElementById("pan-5").style.background = "teal";
-        document.getElementById("pan-6").style.background = "purple";
-        if (difficulty === 8) {
-          document.getElementById("pan-7").style.background = "#804000";
-          document.getElementById("pan-8").style.background = "#33334d";
-        }
+      for (var i = 1; i <= difficulty; i++){
+        document.getElementById("pan-"+i).style.background = colors[i].off;
       }
     }
   }
 
   //lights up one panel
   function onePanel(panel) {
-    switch (panel) {
-      case 1 :
-          if (gameMode === 1 || gameMode === 3) {
-            document.getElementById("pan-1").style.background = "floralwhite";
-          } else { 
-            document.getElementById("pan-1").style.background = "lightgreen";
-          }
-          if(sound) {
-            var audio = document.getElementById("sound-1");
-            audio.play();
-          }
-      break;
-      case 2 :
-          if (gameMode === 1 || gameMode === 3) {
-            document.getElementById("pan-2").style.background = "floralwhite";
-          } else {
-            document.getElementById("pan-2").style.background = "tomato";
-          }
-          if(sound) {
-            var audio = document.getElementById("sound-2");
-            audio.play();
-          }
-      break;
-      case 3 :
-          if (gameMode === 1 || gameMode === 3) {
-            document.getElementById("pan-3").style.background = "floralwhite";
-          } else {
-            document.getElementById("pan-3").style.background = "yellow";
-          }
-          if(sound) {
-            var audio = document.getElementById("sound-3");
-            audio.play();
-          }
-      break;
-      case 4 :
-          if (gameMode === 1 || gameMode === 3) {
-            document.getElementById("pan-4").style.background = "floralwhite";
-          } else {
-            document.getElementById("pan-4").style.background = "lightskyblue";
-          }
-          if(sound) {
-            var audio = document.getElementById("sound-4");
-            audio.play();
-          }
-      break;
-      case 5 :
-          if (gameMode === 1 || gameMode === 3) {
-            document.getElementById("pan-5").style.background = "floralwhite";
-          } else {
-            document.getElementById("pan-5").style.background = "aqua";
-          }
-          if(sound) {
-            var audio = document.getElementById("sound-5");
-            audio.play();
-          }
-      break;
-      case 6 :
-          if (gameMode === 1 || gameMode === 3) {
-            document.getElementById("pan-6").style.background = "floralwhite";
-          } else {
-            document.getElementById("pan-6").style.background = "fuchsia";
-          }
-          if(sound) {
-            var audio = document.getElementById("sound-6");
-            audio.play();
-          }
-      break;
-      case 7 :
-          if (gameMode === 1 || gameMode === 3) {
-            document.getElementById("pan-7").style.background = "floralwhite";
-          } else { 
-            document.getElementById("pan-7").style.background = "#ff8000";
-          }
-          if(sound) {
-            var audio = document.getElementById("sound-7");
-            audio.play();
-          }
-      break;
-      case 8 :
-          if (gameMode === 1 || gameMode === 3) {
-            document.getElementById("pan-8").style.background = "floralwhite";
-          } else { 
-            document.getElementById("pan-8").style.background = "#666699";
-          }
-          if(sound) {
-            var audio = document.getElementById("sound-8");
-            audio.play();
-          }
-      break;
+    if (gameMode === 1 || gameMode === 3) {
+        document.getElementById("pan-"+panel).style.background = "floralwhite";
+    } else {
+      document.getElementById("pan-"+panel).style.background = colors[panel].on;
+    }
+
+    if (sound) {
+      var audio = document.getElementById("sound-"+panel);
+      audio.play();
     }
     delayLightsOff();
   }
@@ -527,7 +446,6 @@
   function winGame() {
     levelDisplay.innerHTML = "Win!";
     clearInterval(lightInterval);
-    clearInterval(sequenceInterval);
     clickEnabled = false;
     aI = false;
     lightsAll();

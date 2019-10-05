@@ -242,7 +242,8 @@
       delayClickEnabled();
     }
     if(aI) {
-      runSequence();
+      //timeout to put delay at the start of the ai turn instead of the player's turn
+      setTimeout(runSequence, 750);
     } 
   }
 
